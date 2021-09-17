@@ -4,8 +4,8 @@
   "description": "Veritone mall micro-service",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www",
-    "dev": "nodemon --inspect ./src/bin/www"
+    "start": "babel-node ./src/bin/www",
+    "dev": "nodemon --exec babel-node ./src/bin/www"
   },
   "author": "YuZhaoping",
   "license": "MIT",
@@ -17,6 +17,9 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
     "nodemon": "^2.0.12"
   }
 }
