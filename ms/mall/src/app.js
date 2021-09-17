@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 import config from './config';
 
 import { handleRestApiError } from './controllers/apiErrors';
+import apiRouter from './routes/api';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/', indexRouter);
+app.use('/mall/api/v1', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
