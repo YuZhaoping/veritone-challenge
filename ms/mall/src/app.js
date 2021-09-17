@@ -5,7 +5,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-var app = express();
+import config from './config';
+
+const app = express();
+
+app.config = config;
 
 app.use(logger('dev'));
 app.use(express.json());
