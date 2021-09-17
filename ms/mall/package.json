@@ -4,7 +4,8 @@
   "description": "Veritone mall micro-service",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www"
+    "start": "node ./src/bin/www",
+    "dev": "nodemon --inspect ./src/bin/www"
   },
   "author": "YuZhaoping",
   "license": "MIT",
@@ -14,5 +15,8 @@
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
