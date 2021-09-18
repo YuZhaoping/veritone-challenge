@@ -6,6 +6,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 
 import config from './config';
+import loaders from './loaders';
+import serviceSupplier from './services/supplier';
 
 import { handleRestApiError } from './controllers/apiErrors';
 import apiRouter from './routes/api';
@@ -30,5 +32,14 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(handleRestApiError);
+
+// start services
+async function startServices() {
+  const providers = await loaders.load({ config, expressApp: app });
+
+  await serviceSupplier.initServices({ providers });
+}
+
+startServices();
 
 module.exports = app;
