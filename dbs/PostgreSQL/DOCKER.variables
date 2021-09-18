@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+IMAGE_TAG="0.1.0"
+IMAGE_REPOSITORY="veritone/ms/mall-db"
+
+IMAGE_FULL_NAME="${IMAGE_REPOSITORY}:${IMAGE_TAG}"
+
+CONTAINER_NAME=veritone-mall-db
+
+# Network names that used for docker deployment.
+BACKEND_NETWORK_NAME=app-back-net
+
+# Define the postgres container using volume name.
+VOLUME_NAME=${CONTAINER_NAME}-vol
+
+# Define the postgres container using ports.
+PORT=5432
+HOST_PORT=5432

@@ -1,0 +1,5 @@
+.dockerignore
+docker-cmd/
+DB.variables
+DOCKER.variables
+Dockerfile
