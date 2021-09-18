@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 import modelSupplier from '../../models/supplier';
-import shoppingItemsSQL from './shopping-items';
+import shoppingItemsDAO from './shopping-items';
 
 const init = async ({ self, config }) => {
   const pool = new Pool(config.pg);
@@ -15,7 +15,7 @@ const init = async ({ self, config }) => {
     client.release();
   }
 
-  shoppingItemsSQL.setPgPool(pool);
+  shoppingItemsDAO.setPgPool(pool);
 
   await modelSupplier.initModels({ dataStore: self, config });
 };
@@ -25,10 +25,11 @@ const getModelSupplier = () => (modelSupplier);
 const dataStore = {
   init,
   getModelSupplier,
-  getAllShoppingItems: shoppingItemsSQL.getAllShoppingItems,
-  createShoppingItem: shoppingItemsSQL.createShoppingItem,
-  updateShoppingItem: shoppingItemsSQL.updateShoppingItem,
-  deleteShoppingItem: shoppingItemsSQL.deleteShoppingItem
+  getAllShoppingItems: shoppingItemsDAO.getAllShoppingItems,
+  getShoppingItemById: shoppingItemsDAO.getShoppingItemById,
+  createShoppingItem: shoppingItemsDAO.createShoppingItem,
+  updateShoppingItem: shoppingItemsDAO.updateShoppingItem,
+  deleteShoppingItem: shoppingItemsDAO.deleteShoppingItem
 };
 
 export default dataStore;
