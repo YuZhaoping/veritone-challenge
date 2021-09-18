@@ -5,22 +5,21 @@ const init = async (props) => {
 };
 
 const getAllShoppingItems = async (customerId) => {
-  // TODO
-  return [];
+  return await dataStore.getAllShoppingItems(customerId);
 };
 
 const createShoppingItem = async (customerId, itemDTO) => {
-  // TODO
-  return itemDTO;
+  const itemId = await dataStore.createShoppingItem(customerId, itemDTO);
+  return {...itemDTO, itemId};
 };
 
 const updateShoppingItem = async (customerId, itemId, itemDTO) => {
-  // TODO
-  return itemDTO;
+  await dataStore.updateShoppingItem(customerId, itemId, itemDTO);
+  return {...itemDTO, itemId};
 };
 
 const deleteShoppingItem = async (customerId, itemId) => {
-  // TODO
+  await dataStore.deleteShoppingItem(customerId, itemId);
 };
 
 const shoppingItemsModel = {

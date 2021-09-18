@@ -24,7 +24,11 @@ const getModelSupplier = () => (modelSupplier);
 
 const dataStore = {
   init,
-  getModelSupplier
+  getModelSupplier,
+  getAllShoppingItems: shoppingItemsSQL.getAllShoppingItems,
+  createShoppingItem: shoppingItemsSQL.createShoppingItem,
+  updateShoppingItem: shoppingItemsSQL.updateShoppingItem,
+  deleteShoppingItem: shoppingItemsSQL.deleteShoppingItem
 };
 
 export default dataStore;
