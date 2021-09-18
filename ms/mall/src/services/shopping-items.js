@@ -9,22 +9,19 @@ const init = async ({ providers }) => {
 };
 
 const getAllShoppingItems = async (customerId) => {
-  // TODO
-  return [];
+  return await shoppingItemsModel.getAllShoppingItems(customerId);
 };
 
 const createShoppingItem = async (customerId, itemDTO) => {
-  // TODO
-  return itemDTO;
+  return await shoppingItemsModel.createShoppingItem(customerId, itemDTO);
 };
 
 const updateShoppingItem = async (customerId, itemId, itemDTO) => {
-  // TODO
-  return itemDTO;
+  return await shoppingItemsModel.updateShoppingItem(customerId, itemId, itemDTO);
 };
 
 const deleteShoppingItem = async (customerId, itemId) => {
-  // TODO
+  await shoppingItemsModel.deleteShoppingItem(customerId, itemId);
 };
 
 const shoppingItemsService = {
