@@ -2,6 +2,8 @@ import React from 'react';
 import styled from '@material-ui/core/styles/styled';
 import Container from '@material-ui/core/Container';
 
+import Header from './components/Header';
+
 import { TestComponent } from './components/tests';
 
 const AppRoot = styled('div')({
@@ -13,7 +15,7 @@ const AppRoot = styled('div')({
 const AppLayout = () => {
   return (
     <AppRoot>
-      <div>SHOPPING LIST</div>
+      <Header />
       <Container>
         <TestComponent />
       </Container>
