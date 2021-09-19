@@ -3,15 +3,14 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from './appTheme';
-
-import { TestComponent } from './components/tests';
+import AppLayout from './appLayout';
 
 const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <TestComponent />
+      <AppLayout />
     </ThemeProvider>
   );
 };
