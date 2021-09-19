@@ -1,0 +1,49 @@
+{
+  "name": "veritone-challenge",
+  "version": "0.1.0",
+  "description": "Veritone Fullstack Coding Challenge Front-End",
+  "private": true,
+  "scripts": {
+    "eslint": "eslint --ext .js,.jsx,.mjs src",
+    "dev": "webpack serve --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "server": "http-server dist"
+  },
+  "keywords": [],
+  "author": "YuZhaoping",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "autoprefixer": "^10.3.4",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1",
+    "fibers": "^5.0.0",
+    "html-webpack-plugin": "^5.3.2",
+    "http-server": "^13.0.1",
+    "mini-css-extract-plugin": "^2.2.2",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.39.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "core-js": "^3.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
