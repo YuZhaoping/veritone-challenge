@@ -3,10 +3,13 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
   typography: {
     fontFamily: [
-      'Dosis',
+      'Nunito',
       'sans-serif',
     ].join(','),
     fontWeightBold: 600,
+    button: {
+      textTransform: 'none',
+    },
   },
 });
 

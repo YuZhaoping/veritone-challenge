@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { TestComponent } from '../../components/tests';
+import EmptyView from './EmptyView';
 
 const ShoppingList = () => {
   return (
     <React.Fragment>
-      <TestComponent />
+      <EmptyView />
     </React.Fragment>
   );
 };
