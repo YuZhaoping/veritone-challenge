@@ -4,7 +4,9 @@ import Container from '@material-ui/core/Container';
 
 import Header from './components/Header';
 
-import { TestComponent } from './components/tests';
+import {
+  ShoppingListPage
+} from './pages';
 
 const AppRoot = styled('div')({
   display: 'flex',
@@ -17,7 +19,7 @@ const AppLayout = () => {
     <AppRoot>
       <Header />
       <Container>
-        <TestComponent />
+        <ShoppingListPage />
       </Container>
     </AppRoot>
   );
