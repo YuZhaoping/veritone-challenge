@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from '@material-ui/core/styles/styled';
 import Container from '@material-ui/core/Container';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
 import Header from './components/Header';
 
@@ -14,15 +20,17 @@ const AppRoot = styled('div')({
   minHeight: '100vh'
 });
 
-const AppLayout = () => {
-  return (
+const AppLayout = () => (
+  <Router>
     <AppRoot>
       <Header />
       <Container>
-        <ShoppingListPage />
+        <Switch>
+          <Route path='/'><ShoppingListPage /></Route>
+        </Switch>
       </Container>
     </AppRoot>
-  );
-};
+  </Router>
+);
 
 export default AppLayout;
