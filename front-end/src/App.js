@@ -1,15 +1,16 @@
 import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import theme from './appTheme';
+
+import { TestComponent } from './components/tests';
 
 const App = () => {
 
   return (
-    <React.Fragment>
-    <div className='hello font-dosis' >
-      {'Hello Veritone'} <span className='font-nunito'>to Challenge</span>
-    </div>
-    <div className='material-icons-outlined'>mode_edit</div>
-    <div className='material-icons-outlined'>delete</div>
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      <TestComponent />
+    </ThemeProvider>
   );
 };
 
