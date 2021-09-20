@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+import EditDialog from './EditDialog';
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +30,16 @@ const useStyles = makeStyles({
 });
 
 const EmptyView = () => {
+  const [openEditDlg, setOpenEditDlg] = useState(false);
+
+  const handleEditDlgOpen = () => {
+    setOpenEditDlg(true);
+  };
+
+  const handleEditDlgClose = () => {
+    setOpenEditDlg(false);
+  };
+
   const classes = useStyles();
 
   return (
@@ -36,10 +48,14 @@ const EmptyView = () => {
       <Typography className={classes.title}>
         {'Your shopping list is empty :('}
       </Typography>
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={handleEditDlgOpen}>
         {'Add your first item'}
       </Button>
       </CardContent>
+      <EditDialog
+        open={openEditDlg}
+        handleClose={handleEditDlgClose}
+      />
     </Card>
   );
 };
