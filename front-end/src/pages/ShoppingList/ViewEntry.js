@@ -12,14 +12,14 @@ export default function ViewEntry(props) {
     handleRowDelete
   } = props
 
-  const [openEditDlg, setOpenEditDlg] = useState(false);
+  const [editDlgState, setEditDlgState] = useState(() => ({open: false, item: null}));
 
   const handleEditDlgOpen = (item) => {
-    setOpenEditDlg(true);
+    setEditDlgState(() => ({open: true, item}));
   };
 
   const handleEditDlgClose = (item) => {
-    setOpenEditDlg(false);
+    setEditDlgState(() => ({open: false, item: null}));
     if (item) {
       new Promise((resolve, reject) => {
         handleRowAdd && handleRowAdd(item);
@@ -40,9 +40,10 @@ export default function ViewEntry(props) {
           onOpenEditDlg={handleEditDlgOpen}
         />
       )}
-      {openEditDlg && (
+      {editDlgState.open && (
         <EditDialog
-          open={openEditDlg}
+          open={editDlgState.open}
+          item={editDlgState.item}
           handleClose={handleEditDlgClose}
         />
       )}
