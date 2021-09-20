@@ -59,7 +59,8 @@ export const deleteShoppingItem = async (req, res, next) => {
 
     await shoppingItemsService.deleteShoppingItem(customerId, itemId);
 
-    res.json({ apiVersion });
+    const data = {};
+    res.json({ apiVersion, data });
   } catch (e) {
     next(e);
   }
