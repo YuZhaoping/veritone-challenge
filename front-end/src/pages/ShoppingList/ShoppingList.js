@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import EmptyView from './EmptyView';
-import TableView from './TableView';
+import ViewEntry from './ViewEntry';
 
 const defaultItemsState = {
   data: [],
@@ -108,14 +107,12 @@ const ShoppingList = () => {
   };
 
   return (
-    <React.Fragment>
-      {itemsState.data.length > 0 && (
-        <TableView items={itemsState.data} onRowAdd={handleRowAdd} />
-      )}
-      {itemsState.data.length === 0 && (
-        <EmptyView onRowAdd={handleRowAdd} />
-      )}
-    </React.Fragment>
+    <ViewEntry
+      items={itemsState.data}
+      handleRowAdd={handleRowAdd}
+      handleRowUpdate={handleRowUpdate}
+      handleRowDelete={handleRowDelete}
+    />
   );
 };
 
