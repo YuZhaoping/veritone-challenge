@@ -2,6 +2,9 @@ export default {
   server: {
     port: process.env.PORT || '3000'
   },
+  cors: {
+    origin: 'http://localhost:8080'
+  },
   pg: {
     database: process.env.PG_DATABASE || 'postgres',
     user: process.env.PG_USER || 'postgres',
