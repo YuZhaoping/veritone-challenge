@@ -6,7 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 export default function ItemRow(props) {
-  const { row } = props;
+  const { row, onOpenEditDlg } = props;
+
+  const handleEditDlgOpen = () => {
+    onOpenEditDlg && onOpenEditDlg(row);
+  };
 
   return (
     <TableRow
@@ -23,7 +27,7 @@ export default function ItemRow(props) {
         <Typography color="textSecondary">{row.itemDesc}</Typography>
       </TableCell>
       <TableCell align="right">
-        <IconButton aria-label="edit">
+        <IconButton aria-label="edit" onClick={handleEditDlgOpen} >
           <span className="material-icons-outlined md-18">mode_edit</span>
         </IconButton>
         <IconButton aria-label="delete">

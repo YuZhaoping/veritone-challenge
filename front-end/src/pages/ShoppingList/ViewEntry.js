@@ -19,10 +19,17 @@ export default function ViewEntry(props) {
   };
 
   const handleEditDlgClose = (item) => {
+    const oldItem = editDlgState.item;
+    const isAdd = !oldItem;
+
     setEditDlgState(() => ({open: false, item: null}));
     if (item) {
       new Promise((resolve, reject) => {
-        handleRowAdd && handleRowAdd(item);
+        if (isAdd) {
+          handleRowAdd && handleRowAdd(item);
+        } else {
+          handleRowUpdate && handleRowUpdate(oldItem, item);
+        }
         resolve();
       });
     }
