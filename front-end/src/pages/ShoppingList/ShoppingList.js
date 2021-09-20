@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import EmptyView from './EmptyView';
+import TableView from './TableView';
 
 const defaultItemsState = {
   data: [],
@@ -53,7 +54,6 @@ const ShoppingList = () => {
       item => {
         const data = itemsState.data;
         data.unshift(item);
-        console.log(data);
         setItemsState(prevState => ({data, loading: false}));
       },
       error => {
@@ -109,7 +109,12 @@ const ShoppingList = () => {
 
   return (
     <React.Fragment>
-      <EmptyView onRowAdd={handleRowAdd} />
+      {itemsState.data.length > 0 && (
+        <TableView items={itemsState.data} onRowAdd={handleRowAdd} />
+      )}
+      {itemsState.data.length === 0 && (
+        <EmptyView onRowAdd={handleRowAdd} />
+      )}
     </React.Fragment>
   );
 };

@@ -121,7 +121,7 @@ export default function EditDialog(props) {
       <Paper className={classes.root}>
       <DialogTitle className={classes.dlgTitle} disableTypography>
         <Typography className={classes.titleText}>{'SHOPPING LIST'}</Typography>
-        <IconButton aria-label="close" onClick={handleClose}>
+        <IconButton aria-label="close" onClick={onClose}>
           <span className="material-icons-outlined md-18">last_page</span>
         </IconButton>
       </DialogTitle>
@@ -174,7 +174,7 @@ export default function EditDialog(props) {
         />
       </DialogContent>
       <DialogActions className={classes.dlgActions}>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={onClose}>Cancel</Button>
         <Button variant="contained" color="primary" onClick={onSubmit}>
           {isAdd ? 'Add Item' : 'Save Item'}
         </Button>
