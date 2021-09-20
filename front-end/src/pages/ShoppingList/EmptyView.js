@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-import EditDialog from './EditDialog';
 
 const useStyles = makeStyles({
   root: {
@@ -30,22 +28,10 @@ const useStyles = makeStyles({
 });
 
 const EmptyView = (props) => {
-  const { onRowAdd } = props;
-
-  const [openEditDlg, setOpenEditDlg] = useState(false);
+  const { onOpenEditDlg } = props;
 
   const handleEditDlgOpen = () => {
-    setOpenEditDlg(true);
-  };
-
-  const handleEditDlgClose = (item) => {
-    setOpenEditDlg(false);
-    if (item) {
-      new Promise((resolve, reject) => {
-        onRowAdd && onRowAdd(item);
-        resolve();
-      });
-    }
+    onOpenEditDlg && onOpenEditDlg();
   };
 
   const classes = useStyles();
@@ -60,10 +46,6 @@ const EmptyView = (props) => {
         {'Add your first item'}
       </Button>
       </CardContent>
-      <EditDialog
-        open={openEditDlg}
-        handleClose={handleEditDlgClose}
-      />
     </Card>
   );
 };

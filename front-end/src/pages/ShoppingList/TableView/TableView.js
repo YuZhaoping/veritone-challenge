@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import ItemsTable from './ItemsTable';
-import EditDialog from '../EditDialog';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,22 +34,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TableView = (props) => {
-  const { items, onRowAdd } = props;
-
-  const [openEditDlg, setOpenEditDlg] = useState(false);
+  const { items, onOpenEditDlg } = props;
 
   const handleEditDlgOpen = () => {
-    setOpenEditDlg(true);
-  };
-
-  const handleEditDlgClose = (item) => {
-    setOpenEditDlg(false);
-    if (item) {
-      new Promise((resolve, reject) => {
-        onRowAdd && onRowAdd(item);
-        resolve();
-      });
-    }
+    onOpenEditDlg && onOpenEditDlg();
   };
 
   const classes = useStyles();
@@ -67,12 +54,11 @@ const TableView = (props) => {
       </div>
       <div className={classes.content}>
         <Divider />
-        <ItemsTable items={items} />
+        <ItemsTable
+          items={items}
+          onOpenEditDlg={onOpenEditDlg}
+        />
       </div>
-      <EditDialog
-        open={openEditDlg}
-        handleClose={handleEditDlgClose}
-      />
     </Paper>
   );
 };
