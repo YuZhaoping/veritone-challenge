@@ -29,15 +29,23 @@ const useStyles = makeStyles({
   },
 });
 
-const EmptyView = () => {
+const EmptyView = (props) => {
+  const { onRowAdd } = props;
+
   const [openEditDlg, setOpenEditDlg] = useState(false);
 
   const handleEditDlgOpen = () => {
     setOpenEditDlg(true);
   };
 
-  const handleEditDlgClose = () => {
+  const handleEditDlgClose = (item) => {
     setOpenEditDlg(false);
+    if (item) {
+      new Promise((resolve, reject) => {
+        onRowAdd && onRowAdd(item);
+        resolve();
+      });
+    }
   };
 
   const classes = useStyles();
