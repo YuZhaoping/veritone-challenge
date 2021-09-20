@@ -23,6 +23,7 @@ Run the mall backend service server:
 
 ```sh
 cd ~/work/challenge/veritone/ms/mall
+npm install
 npm run dev
 ```
 The web server is listening at `3000` port as default.
@@ -32,6 +33,7 @@ Run the challenge app front end:
 
 ```sh
 cd ~/work/challenge/veritone/front-end
+npm install
 npm run dev
 ```
 The web server is listening at `8080` port as default.
