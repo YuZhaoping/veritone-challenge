@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TableView = (props) => {
-  const { items, onOpenEditDlg } = props;
+  const { items, onOpenEditDlg, onOpenDeleteAlertDlg } = props;
 
   const handleEditDlgOpen = () => {
     onOpenEditDlg && onOpenEditDlg();
@@ -57,6 +57,7 @@ const TableView = (props) => {
         <ItemsTable
           items={items}
           onOpenEditDlg={onOpenEditDlg}
+          onOpenDeleteAlertDlg={onOpenDeleteAlertDlg}
         />
       </div>
     </Paper>

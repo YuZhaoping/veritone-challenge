@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import EmptyView from './EmptyView';
 import TableView from './TableView';
 import EditDialog from './EditDialog';
+import DeleteAlertDialog from './DeleteAlertDialog';
 
 export default function ViewEntry(props) {
   const {
@@ -13,6 +14,7 @@ export default function ViewEntry(props) {
   } = props
 
   const [editDlgState, setEditDlgState] = useState(() => ({open: false, item: null}));
+  const [deleteAlertDlgState, setDeleteAlertDlgState] = useState(() => ({open: false, item: null}));
 
   const handleEditDlgOpen = (item) => {
     setEditDlgState(() => ({open: true, item}));
@@ -35,11 +37,28 @@ export default function ViewEntry(props) {
     }
   };
 
+  const handleDeleteAlertDlgOpen = (item) => {
+    setDeleteAlertDlgState(() => ({open: true, item}));
+  };
+
+  const handleDeleteAlertDlgClose = (confirmed) => {
+    const oldItem = deleteAlertDlgState.item;
+
+    setDeleteAlertDlgState(() => ({open: false, item: null}));
+    if (confirmed) {
+      new Promise((resolve, reject) => {
+        handleRowDelete && handleRowDelete(oldItem);
+        resolve();
+      });
+    }
+  };
+
   return (
     <React.Fragment>
       {items.length > 0 && (
         <TableView items={items}
           onOpenEditDlg={handleEditDlgOpen}
+          onOpenDeleteAlertDlg={handleDeleteAlertDlgOpen}
         />
       )}
       {items.length === 0 && (
@@ -52,6 +71,12 @@ export default function ViewEntry(props) {
           open={editDlgState.open}
           item={editDlgState.item}
           handleClose={handleEditDlgClose}
+        />
+      )}
+      {deleteAlertDlgState.open && (
+        <DeleteAlertDialog
+          open={deleteAlertDlgState.open}
+          handleClose={handleDeleteAlertDlgClose}
         />
       )}
     </React.Fragment>

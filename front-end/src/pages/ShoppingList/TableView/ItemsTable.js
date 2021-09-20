@@ -6,7 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import ItemRow from './ItemRow';
 
 export default function ItemsTable(props) {
-  const { items, onOpenEditDlg } = props;
+  const { items, onOpenEditDlg, onOpenDeleteAlertDlg } = props;
 
   return (
     <TableContainer>
@@ -15,6 +15,7 @@ export default function ItemsTable(props) {
           {items.map((row, index) => (
             <ItemRow row={row} key={row.itemId}
               onOpenEditDlg={onOpenEditDlg}
+              onOpenDeleteAlertDlg={onOpenDeleteAlertDlg}
             />
           ))}
         </TableBody>
