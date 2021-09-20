@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 import ViewEntry from './ViewEntry';
 
+import mallAPIs from '../../services/mall/apis';
+
 const defaultItemsState = {
   data: [],
   loading: true,
 };
 
 // Only for test
+const mockAPIaccess = false;
 let itemIdSeq = 1000;
+
 
 const ShoppingList = () => {
 
@@ -20,6 +24,7 @@ const ShoppingList = () => {
 
   const handleError = error => {
     // TODO
+    console.log(error);
     setItemsState(prevState => ({...prevState, loading: false}));
   };
 
@@ -29,9 +34,19 @@ const ShoppingList = () => {
 
   const queryRowData = () => {
     new Promise((resolve, reject) => {
-      // TODO
-      const items = [];
-      resolve(items);
+      if (mockAPIaccess) {
+        const items = [];
+        resolve(items);
+      } else {
+        mallAPIs.getAllShoppingItems().then(
+          apiData => {
+            resolve(apiData);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      }
     }).then(
       data => {
         setItemsState(prevState => ({data, loading: false}));
@@ -45,10 +60,20 @@ const ShoppingList = () => {
   const handleRowAdd = (newItem) => {
     onLoading();
     new Promise((resolve, reject) => {
-      // TODO
-      const itemId = ++itemIdSeq;
-      const item = {...newItem, itemId};
-      resolve(item);
+      if (mockAPIaccess) {
+        const itemId = ++itemIdSeq;
+        const item = {...newItem, itemId};
+        resolve(item);
+      } else {
+        mallAPIs.createShoppingItem(newItem).then(
+          apiData => {
+            resolve(apiData);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      }
     }).then(
       item => {
         const data = itemsState.data;
@@ -64,9 +89,19 @@ const ShoppingList = () => {
   const handleRowUpdate = (oldItem, newItem) => {
     onLoading();
     new Promise((resolve, reject) => {
-      // TODO
-      const item = {...oldItem, ...newItem};
-      resolve(item);
+      if (mockAPIaccess) {
+        const item = {...oldItem, ...newItem};
+        resolve(item);
+      } else {
+        mallAPIs.updateShoppingItem(oldItem.itemId, newItem).then(
+          apiData => {
+            resolve(apiData);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      }
     }).then(
       item => {
         const data = itemsState.data;
@@ -87,8 +122,18 @@ const ShoppingList = () => {
   const handleRowDelete = (oldItem) => {
     onLoading();
     new Promise((resolve, reject) => {
-      // TODO
-      resolve(oldItem);
+      if (mockAPIaccess) {
+        resolve(oldItem);
+      } else {
+        mallAPIs.deleteShoppingItem(oldItem.itemId).then(
+          apiData => {
+            resolve(oldItem);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      }
     }).then(
       item => {
         const data = itemsState.data;
