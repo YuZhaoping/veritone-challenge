@@ -164,14 +164,15 @@ export default function EditDialog(props) {
             ))}
           </Select>
         </FormControl>
-        <FormControlLabel
-          disabled={isAdd}
-          className={classes.inputField}
-          label="Purchased"
-          value="purchased"
-          control={<Checkbox color="primary" />}
-          labelPlacement="end"
-        />
+        {!isAdd && (
+          <FormControlLabel
+            className={classes.inputField}
+            label="Purchased"
+            value="purchased"
+            control={<Checkbox color="primary" />}
+            labelPlacement="end"
+          />
+        )}
       </DialogContent>
       <DialogActions className={classes.dlgActions}>
         <Button onClick={onClose}>Cancel</Button>
