@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@material-ui/core/styles/styled';
-import Container from '@material-ui/core/Container';
+import MuiContainer from '@material-ui/core/Container';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +18,10 @@ const AppRoot = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh'
+});
+
+const Container = styled(MuiContainer)({
+  position: 'relative',
 });
 
 const AppLayout = () => (

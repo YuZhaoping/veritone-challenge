@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import LoadingSpinner from '../../components/LoadingSpinner';
+
 import EmptyView from './EmptyView';
 import TableView from './TableView';
 import EditDialog from './EditDialog';
@@ -10,7 +12,8 @@ export default function ViewEntry(props) {
     items,
     handleRowAdd,
     handleRowUpdate,
-    handleRowDelete
+    handleRowDelete,
+    loading
   } = props
 
   const [editDlgState, setEditDlgState] = useState(() => ({open: false, item: null}));
@@ -78,6 +81,9 @@ export default function ViewEntry(props) {
           open={deleteAlertDlgState.open}
           handleClose={handleDeleteAlertDlgClose}
         />
+      )}
+      {loading && (
+        <LoadingSpinner />
       )}
     </React.Fragment>
   );

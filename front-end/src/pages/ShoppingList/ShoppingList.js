@@ -157,6 +157,7 @@ const ShoppingList = () => {
       handleRowAdd={handleRowAdd}
       handleRowUpdate={handleRowUpdate}
       handleRowDelete={handleRowDelete}
+      loading={itemsState.loading}
     />
   );
 };
