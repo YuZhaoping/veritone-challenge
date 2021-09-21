@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -6,7 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 export default function ItemRow(props) {
-  const { row, onOpenEditDlg, onOpenDeleteAlertDlg } = props;
+  const { row, classes, onOpenEditDlg, onOpenDeleteAlertDlg } = props;
+
+  const [purchasedState, setPurchasedState] = useState(false);
+
+  const togglePurchasedState = (event) => {
+    setPurchasedState(event.target.checked);
+  }
 
   const handleEditDlgOpen = () => {
     onOpenEditDlg && onOpenEditDlg(row);
@@ -16,19 +22,21 @@ export default function ItemRow(props) {
     onOpenDeleteAlertDlg && onOpenDeleteAlertDlg(row);
   };
 
+  const itemNameCls = purchasedState ? classes.itemNameLineThrough : classes.itemName;
+  const itemDescCls = purchasedState ? classes.itemDescLineThrough : classes.itemDesc;
+
   return (
-    <TableRow
-      hover
-      key={row.itemId}
-    >
+    <TableRow hover key={row.itemId}>
       <TableCell padding="checkbox">
         <Checkbox
-          checked={false}
+          checked={purchasedState}
+          onChange={togglePurchasedState}
+          color="primary"
         />
       </TableCell>
       <TableCell component="th" scope="row" padding="none">
-        <Typography variant="subtitle1">{row.itemName}</Typography>
-        <Typography color="textSecondary">{row.itemDesc}</Typography>
+        <Typography className={itemNameCls} variant="subtitle1">{row.itemName}</Typography>
+        <Typography className={itemDescCls} color="textSecondary">{row.itemDesc}</Typography>
       </TableCell>
       <TableCell align="right">
         <IconButton aria-label="edit" onClick={handleEditDlgOpen} >
