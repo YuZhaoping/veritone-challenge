@@ -1,21 +1,21 @@
 import { errorsActionTypes as types } from '../actions/errorsAction';
 
-const initialErrorsList = {
+const initialErrorsList = () => ({
   errors: []
-};
+});
 
-const initialErrorsProfile = {
+const initialErrorsProfile = () => ({
   errorCount: 0,
   currentError: null,
   isNew: false
-};
+});
 
-const addError = function(list, error) {
+function addError(list, error) {
   list.unshift(error);
   return list;
 };
 
-const removeError = function(list, error) {
+function removeError(list, error) {
   list.some((e, index) => {
     if (e === error) {
       list.splice(index, 1);
@@ -25,7 +25,7 @@ const removeError = function(list, error) {
   return list;
 };
 
-export const errorsList = (state = initialErrorsList, action) => {
+export const errorsList = (state = initialErrorsList(), action) => {
   switch (action.type) {
     case types.ADD_ERROR_TO_LIST:
       {
@@ -48,35 +48,38 @@ export const errorsList = (state = initialErrorsList, action) => {
   }
 };
 
-export const errorsProfile = (state = initialErrorsProfile, action) => {
+export const errorsProfile = (state = initialErrorsProfile(), action) => {
   switch (action.type) {
-    case types.DECREASE_ERROR_COUNT:
-      {
-        const count = state.errorCount - 1;
-        return { ...state,
-          errorCount: count,
-          isNew: false
-        };
-      }
-
     case types.ON_ADD_ERROR:
       {
         const count = state.errorCount + 1;
-        return { ...state,
+        return {
           errorCount: count,
           currentError: action.error,
           isNew: true
         };
       }
 
+    case types.DECREASE_ERROR_COUNT:
+      {
+        const count = state.errorCount - 1;
+        return {
+          errorCount: count,
+          currentError: state.currentError,
+          isNew: false
+        };
+      }
+
     case types.SET_CURRENT_ERROR:
-      return { ...state,
+      return {
+        errorCount: state.errorCount,
         currentError: action.error,
         isNew: false
       };
 
     case types.CLEAN_CURRENT_ERROR:
-      return { ...state,
+      return {
+        errorCount: state.errorCount,
         currentError: null,
         isNew: false
       };
