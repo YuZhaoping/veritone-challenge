@@ -158,10 +158,10 @@ export default function EditDialog(props) {
             onChange={handleFieldChange}
             label="How many?"
           >
-            <MenuItem value={''}>&nbsp;</MenuItem>
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={''} key={0}>&nbsp;</MenuItem>
+            {[1, 2, 3, 4, 5].map((val) => (
+              <MenuItem value={val} key={val}>{val}</MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControlLabel
