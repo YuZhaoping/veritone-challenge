@@ -44,6 +44,22 @@ const useStyles = makeStyles(theme => ({
   inputField: {
     marginTop: theme.spacing(2),
   },
+  descTextarea: {
+    position: 'relative',
+    margin: theme.spacing(2, 0, 0, 0),
+    padding: 0,
+  },
+  descInputField: {
+    width: '100%',
+    height: '100%',
+  },
+  descLimitTip: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: 2,
+    margin: '4px',
+  },
   dlgActions: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -140,16 +156,21 @@ export default function EditDialog(props) {
           onChange={handleFieldChange}
           variant="outlined"
         />
-        <TextField
-          className={classes.inputField}
-          label="Description"
-          name="itemDesc"
-          value={editData.itemDesc}
-          onChange={handleFieldChange}
-          multiline
-          rows={5}
-          variant="outlined"
-        />
+        <div className={classes.descTextarea}>
+          <TextField
+            className={classes.descInputField}
+            label="Description"
+            name="itemDesc"
+            value={editData.itemDesc}
+            onChange={handleFieldChange}
+            multiline
+            rows={5}
+            variant="outlined"
+          />
+          <Typography className={classes.descLimitTip} color="textSecondary">
+            {`${editData.itemDesc.length}/100`}
+          </Typography>
+        </div>
         <FormControl className={classes.inputField} variant="outlined">
           <InputLabel>How many?</InputLabel>
           <Select
