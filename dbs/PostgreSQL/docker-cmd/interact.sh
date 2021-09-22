@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0) && source ../DOCKER.variables
-source ../DB.variables
+cd $(dirname $0) && source ./DOCKER.variables
+source ./DB.variables
 
 echo "PGPASSWORD=${POSTGRES_PASSWORD}"
 if docker ps | grep -q "${CONTAINER_NAME}"; then

@@ -1,5 +1,4 @@
 .dockerignore
+.directory
 docker-cmd/
-DB.variables
-DOCKER.variables
 Dockerfile

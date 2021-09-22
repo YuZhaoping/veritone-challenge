@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0) && source ../../DOCKER.variables
+cd $(dirname $0) && source ../DOCKER.variables
 
 NETWORK_NAME=${BACKEND_NETWORK_NAME}
 

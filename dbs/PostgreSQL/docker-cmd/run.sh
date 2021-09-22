@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0) && source ../DOCKER.variables
-source ../DB.variables
+cd $(dirname $0) && source ./DOCKER.variables
+source ./DB.variables
 
 if ! docker ps | grep -q "${CONTAINER_NAME}"; then
   if docker ps -a | grep -q "${CONTAINER_NAME}"; then

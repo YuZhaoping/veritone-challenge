@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0) && source ../DOCKER.variables
+cd $(dirname $0) && source ./DOCKER.variables
 
 if docker ps | grep -q "${CONTAINER_NAME}"; then
   docker stop ${CONTAINER_NAME}
