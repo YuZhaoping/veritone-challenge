@@ -11,7 +11,7 @@ git clone https://github.com/YuZhaoping/veritone-challenge.git veritone
 
 ```
 
-Build PostgreSQL docker image & run PostgreSQL docker container :
+Build PostgreSQL docker image & run PostgreSQL docker container:
 
 ```sh
 cd ~/work/challenge/veritone
@@ -28,6 +28,13 @@ npm run dev
 ```
 The web server is listening at `3000` port as default.
 <br/>Use `Ctrl+C` to terminate the server.
+
+Or run the mall backend service as docker container:
+```sh
+cd ~/work/challenge/veritone
+./ms/mall/docker-cmd/build-image.sh
+./ms/mall/docker-cmd/run.sh
+```
 
 Run the challenge app front end:
 
