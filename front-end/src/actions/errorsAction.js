@@ -8,8 +8,8 @@ const REMOVE_ERROR = 'remove_error';
 const ADD_ERROR_TO_LIST = 'add_error_to_list';
 const REMOVE_ERROR_FROM_LIST = 'remove_error_from_list';
 
-const ON_ADD_ERROR = 'on_add_error';
-const DECREASE_ERROR_COUNT = 'decrease_error_count';
+const ON_ERROR_ADDED = 'on_error_added';
+const ON_ERROR_REMOVED = 'on_error_removed';
 
 const SET_CURRENT_ERROR = 'set_current_error';
 const CLEAN_CURRENT_ERROR = 'clean_current_error';
@@ -23,8 +23,8 @@ export const errorsActionTypes = {
   ADD_ERROR_TO_LIST,
   REMOVE_ERROR_FROM_LIST,
 
-  ON_ADD_ERROR,
-  DECREASE_ERROR_COUNT,
+  ON_ERROR_ADDED,
+  ON_ERROR_REMOVED,
 
   SET_CURRENT_ERROR,
   CLEAN_CURRENT_ERROR,
@@ -33,8 +33,8 @@ export const errorsActionTypes = {
 // --- Error actions ---
 
 // PUBLISH_ERROR --> saga() --> [ADD_ERROR, nextAction(error)] --> [saga(), saga/reducer]
-// ADD_ERROR --> saga() --> [ADD_ERROR_TO_LIST, ON_ADD_ERROR] --> reducer()
-// REMOVE_ERROR --> saga() --> [REMOVE_ERROR_FROM_LIST, DECREASE_ERROR_COUNT] --> reducer()
+// ADD_ERROR --> saga() --> [ADD_ERROR_TO_LIST, ON_ERROR_ADDED] --> reducer()
+// REMOVE_ERROR --> saga() --> [REMOVE_ERROR_FROM_LIST, ON_ERROR_REMOVED] --> reducer()
 // SET_CURRENT_ERROR --> reducer()
 // CLEAN_CURRENT_ERROR --> reducer()
 
@@ -68,13 +68,14 @@ export const removeErrorFromListAction = (error) => ({
 });
 
 
-export const onAddErrorAction = (error) => ({
-  type: ON_ADD_ERROR,
+export const onErrorAddedAction = (error) => ({
+  type: ON_ERROR_ADDED,
   error
 });
 
-export const decreaseErrorCountAction = () => ({
-  type: DECREASE_ERROR_COUNT
+export const onErrorRemovedAction = (nextError) => ({
+  type: ON_ERROR_REMOVED,
+  nextError
 });
 
 
@@ -83,6 +84,6 @@ export const setCurrentErrorAction = (error) => ({
   error
 });
 
-export const cleanErrorCountAction = () => ({
+export const cleanCurrentErrorAction = () => ({
   type: CLEAN_CURRENT_ERROR
 });

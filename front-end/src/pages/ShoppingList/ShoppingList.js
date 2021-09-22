@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import ViewEntry from './ViewEntry';
 
 import mallAPIs from '../../services/mall/apis';
+
+import publishErrorAction from '../../actions/errorsAction';
+
 
 const defaultItemsState = {
   data: [],
@@ -14,7 +18,8 @@ const mockAPIaccess = false;
 let itemIdSeq = 1000;
 
 
-const ShoppingList = () => {
+const ShoppingList = (props) => {
+  const { publishError } = props;
 
   const [itemsState, setItemsState] = useState(() => defaultItemsState);
 
@@ -23,8 +28,7 @@ const ShoppingList = () => {
   }, []);
 
   const handleError = error => {
-    // TODO
-    console.log(error);
+    publishError(error);
     setItemsState(prevState => ({...prevState, loading: false}));
   };
 
@@ -63,6 +67,8 @@ const ShoppingList = () => {
       if (mockAPIaccess) {
         const itemId = ++itemIdSeq;
         const item = {...newItem, itemId};
+        // NOTE: just for test ErrorMessage
+        publishError(new Error(`test error: ${itemId}`));
         resolve(item);
       } else {
         mallAPIs.createShoppingItem(newItem).then(
@@ -162,4 +168,15 @@ const ShoppingList = () => {
   );
 };
 
-export default ShoppingList;
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  publishError: (error) => dispatch(publishErrorAction(error)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingList);

@@ -1,4 +1,4 @@
-import { all, fork, put, takeEvery } from 'redux-saga/effects';
+import { all, fork, put, takeEvery, select } from 'redux-saga/effects';
 
 import {
   errorsActionTypes as types,
@@ -6,8 +6,8 @@ import {
   addErrorAction,
   addErrorToListAction,
   removeErrorFromListAction,
-  onAddErrorAction,
-  decreaseErrorCountAction
+  onErrorAddedAction,
+  onErrorRemovedAction
 } from '../actions/errorsAction';
 
 // --- Handle PUBLISH_ERROR action ---
@@ -29,11 +29,11 @@ export function* publishError() {
 }
 
 // --- Handle ADD_ERROR action ---
-// ADD_ERROR --> saga() --> [ADD_ERROR_TO_LIST, ON_ADD_ERROR] --> reducer()
+// ADD_ERROR --> saga() --> [ADD_ERROR_TO_LIST, ON_ERROR_ADDED] --> reducer()
 
 function* doAddError({ error }) {
   yield put(addErrorToListAction(error));
-  yield put(onAddErrorAction(error));
+  yield put(onErrorAddedAction(error));
 }
 
 export function* addError() {
@@ -41,11 +41,17 @@ export function* addError() {
 }
 
 // --- Handle REMOVE_ERROR action ---
-// REMOVE_ERROR --> saga() --> [REMOVE_ERROR_FROM_LIST, DECREASE_ERROR_COUNT] --> reducer()
+// REMOVE_ERROR --> saga() --> [REMOVE_ERROR_FROM_LIST, ON_ERROR_REMOVED] --> reducer()
+
+const getNextError = ({ errorsList }) => {
+  const errors = errorsList.errors;
+  return (errors.length > 0) ? errors[0] : null;
+}
 
 function* doRemoveError({ error }) {
   yield put(removeErrorFromListAction(error));
-  yield put(decreaseErrorCountAction());
+  const nextError = yield select(getNextError);
+  yield put(onErrorRemovedAction(nextError));
 }
 
 export function* removeError() {

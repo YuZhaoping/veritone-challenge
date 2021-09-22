@@ -50,7 +50,7 @@ export const errorsList = (state = initialErrorsList(), action) => {
 
 export const errorsProfile = (state = initialErrorsProfile(), action) => {
   switch (action.type) {
-    case types.ON_ADD_ERROR:
+    case types.ON_ERROR_ADDED:
       {
         const count = state.errorCount + 1;
         return {
@@ -60,12 +60,12 @@ export const errorsProfile = (state = initialErrorsProfile(), action) => {
         };
       }
 
-    case types.DECREASE_ERROR_COUNT:
+    case types.ON_ERROR_REMOVED:
       {
         const count = state.errorCount - 1;
         return {
           errorCount: count,
-          currentError: state.currentError,
+          currentError: action.nextError,
           isNew: false
         };
       }
