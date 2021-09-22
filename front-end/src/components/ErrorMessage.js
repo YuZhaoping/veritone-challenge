@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -25,12 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
   messageText: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(3),
   },
 }));
 
 const MessageBar = (props) => {
-  const { message, onClose } = props;
+  const { message, badgeContent, onClose } = props;
 
   const classes = useStyles();
 
@@ -40,7 +41,9 @@ const MessageBar = (props) => {
       aria-describedby="error-message-bar"
       message={
         <div id="error-message-bar" className={ classes.message }>
-          <span className="material-icons-outlined md-18">report_problem</span>
+          <Badge badgeContent={ badgeContent } max={99} color="secondary">
+            <span className="material-icons-outlined md-18">report_problem</span>
+          </Badge>
           <Typography className={ classes.messageText } variant="subtitle1">
             { message }
           </Typography>
@@ -56,7 +59,7 @@ const MessageBar = (props) => {
 };
 
 const ErrorMessage = (props) => {
-  const { error, removeError } = props;
+  const { error, errorCount, removeError } = props;
 
   const onClose = () => {
     error && removeError(error);
@@ -67,6 +70,7 @@ const ErrorMessage = (props) => {
       { error && (
         <MessageBar
           message={ error.toString() }
+          badgeContent={ errorCount }
           onClose={ onClose }
         />
       ) }
@@ -75,7 +79,10 @@ const ErrorMessage = (props) => {
 };
 
 const mapStateToProps = ({ errorsProfile }) => {
-  return { error: errorsProfile.currentError };
+  return {
+    error: errorsProfile.currentError,
+    errorCount: errorsProfile.errorCount,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
