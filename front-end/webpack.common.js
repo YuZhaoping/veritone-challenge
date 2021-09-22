@@ -13,7 +13,7 @@ module.exports = {
   output: {
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].[id].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'deploy/dist'),
     publicPath: '/',
     clean: true,
   },

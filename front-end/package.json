@@ -7,7 +7,7 @@
     "eslint": "eslint --ext .js,.jsx,.mjs src",
     "dev": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "server": "http-server dist"
+    "server": "http-server deploy/dist"
   },
   "keywords": [],
   "author": "YuZhaoping",
