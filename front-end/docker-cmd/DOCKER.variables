@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+IMAGE_TAG="0.1.0"
+IMAGE_REPOSITORY="veritone/ms/front-end"
+
+IMAGE_FULL_NAME="${IMAGE_REPOSITORY}:${IMAGE_TAG}"
+
+CONTAINER_NAME=veritone-front-end
+
+# Network names that used for docker deployment.
+FRONTEND_NETWORK_NAME=app-front-net
+
+# Define the container using ports.
+PORT=80
+HOST_PORT=8080
