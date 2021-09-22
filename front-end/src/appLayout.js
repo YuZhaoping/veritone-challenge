@@ -30,7 +30,8 @@ const AppLayout = () => (
       <Header />
       <Container>
         <Switch>
-          <Route path='/'><ShoppingListPage /></Route>
+          <Route path='/shopping-list'><ShoppingListPage /></Route>
+          <Redirect to='/shopping-list' />
         </Switch>
       </Container>
     </AppRoot>
