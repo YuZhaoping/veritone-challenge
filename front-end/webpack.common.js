@@ -76,6 +76,10 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
+        materialui: {
+          test: /[\\/]node_modules[\\/]@material-ui[\\/]/,
+          name: 'material-ui',
+        },
         polyfills: {
           test: /[\\/]node_modules[\\/](core-js|regenerator-runtime)[\\/]/,
           name: 'polyfills',
