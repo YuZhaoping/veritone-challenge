@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+POSTGRES_HOST="veritone-mall-db"
+POSTGRES_PASSWORD=admin123
