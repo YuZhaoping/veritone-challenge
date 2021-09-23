@@ -66,9 +66,9 @@ const ShoppingList = (props) => {
     new Promise((resolve, reject) => {
       if (mockAPIaccess) {
         const itemId = ++itemIdSeq;
-        const item = {...newItem, itemId};
-        // NOTE: just for test ErrorMessage
-        publishError(new Error(`test error: ${itemId}`));
+        // NOTE: just for test
+        const itemName = `${itemId}-${newItem.itemName}`;
+        const item = {...newItem, itemId, itemName};
         resolve(item);
       } else {
         mallAPIs.createShoppingItem(newItem).then(
@@ -97,6 +97,8 @@ const ShoppingList = (props) => {
     new Promise((resolve, reject) => {
       if (mockAPIaccess) {
         const item = {...oldItem, ...newItem};
+        // NOTE: just for test ErrorMessage
+        publishError(new Error(`Warning: ${oldItem.itemId} changed`));
         resolve(item);
       } else {
         mallAPIs.updateShoppingItem(oldItem.itemId, newItem).then(
