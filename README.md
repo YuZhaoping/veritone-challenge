@@ -46,6 +46,15 @@ npm run dev
 The web server is listening at `8080` port as default.
 <br/>Use `Ctrl+C` to exit the web server.
 
+* Or run the front end as docker container:
+```sh
+cd ~/work/challenge/veritone/front-end
+npm install
+npm run build
+./docker-cmd/build-image.sh
+./docker-cmd/run.sh
+```
+
 ## APIs
 
 [RESTful APIs between front-end and backend services](0-REST-APIs.md)
