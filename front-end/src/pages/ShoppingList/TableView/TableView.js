@@ -26,6 +26,8 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     marginTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
   },
   titleText: {
     flexGrow: 1,
