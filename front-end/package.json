@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "eslint": "eslint --ext .js,.jsx,.mjs src",
-    "dev": "webpack serve --open --config webpack.dev.js",
+    "dev": "MOCK_API_ACCESS=true webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "server": "http-server deploy/dist"
   },

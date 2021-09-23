@@ -14,7 +14,7 @@ const defaultItemsState = {
 };
 
 // Only for test
-const mockAPIaccess = false;
+const mockAPIaccess = (__MOCK_API_ACCESS__) ? true : false;
 let itemIdSeq = 1000;
 
 

@@ -1,5 +1,6 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -93,6 +94,9 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __MOCK_API_ACCESS__: JSON.stringify(process.env.MOCK_API_ACCESS),
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
       chunkFilename: 'css/[id].[contenthash].css',
