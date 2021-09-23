@@ -111,6 +111,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: './public/loader.css' },
+        { from: './public/404.html' },
       ],
     }),
   ],
