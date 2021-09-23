@@ -29,7 +29,7 @@ export default function ItemsTable(props) {
 
   return (
     <TableContainer>
-      <Table>
+      <Table size='small'>
         <TableBody>
           {items.map((row, index) => (
             <ItemRow row={row} key={row.itemId} classes={classes}
