@@ -1,6 +1,6 @@
 {
   "name": "ms-mall",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Veritone mall micro-service",
   "private": true,
   "scripts": {

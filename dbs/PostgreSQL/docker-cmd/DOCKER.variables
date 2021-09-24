@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE_TAG="0.3.0"
+IMAGE_TAG="0.4.0"
 IMAGE_REPOSITORY="veritone/ms/mall-db"
 
 IMAGE_FULL_NAME="${IMAGE_REPOSITORY}:${IMAGE_TAG}"
