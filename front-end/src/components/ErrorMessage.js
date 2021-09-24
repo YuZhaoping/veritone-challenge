@@ -69,7 +69,7 @@ const ErrorMessage = (props) => {
     <React.Fragment>
       { error && (
         <MessageBar
-          message={ error.toString() }
+          message={ error.message }
           badgeContent={ errorCount }
           onClose={ onClose }
         />

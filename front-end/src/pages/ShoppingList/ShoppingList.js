@@ -98,7 +98,7 @@ const ShoppingList = (props) => {
       if (mockAPIaccess) {
         const item = {...oldItem, ...newItem};
         // NOTE: just for test ErrorMessage
-        publishError(new Error(`Warning: ${oldItem.itemId} changed`));
+        publishError(new Error(`Warning: ${oldItem.itemName} changed`));
         resolve(item);
       } else {
         mallAPIs.updateShoppingItem(oldItem.itemId, newItem).then(
