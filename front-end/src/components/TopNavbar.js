@@ -51,8 +51,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const navLinks = [
-  { id: 'home', path: '/', name: 'Home'},
-  { id: 'shopping-list', path: '/shopping-list', name: 'Shopping list'},
+  { id: 'home', path: '/', label: 'Home'},
+  { id: 'shopping-list', path: '/shopping-list', label: 'Shopping list'},
 ];
 
 const TopNavbar = () => {
@@ -62,7 +62,7 @@ const TopNavbar = () => {
   return (
     <div className={classes.root}>
       {navLinks.map((el) => (
-        <StyledLink key={el.id} to={el.path}>{el.name}</StyledLink>
+        <StyledLink key={el.id} to={el.path}>{el.label}</StyledLink>
       ))}
     </div>
   );
