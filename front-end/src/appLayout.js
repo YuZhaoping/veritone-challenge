@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header';
+import TopNavbar from './components/TopNavbar';
 
 import {
   ShoppingListPage
@@ -28,6 +29,7 @@ const AppLayout = () => (
   <Router>
     <AppRoot>
       <Header />
+      <TopNavbar />
       <Container>
         <Switch>
           <Route path='/shopping-list'><ShoppingListPage /></Route>
