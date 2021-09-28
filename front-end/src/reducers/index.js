@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 
 import {
   errorsProfile,
   errorsList
 } from './errorsReducer';
 
-const reducers = () => combineReducers({
+const reducers = (history) => combineReducers({
+  router: connectRouter(history),
   errorsProfile,
   errorsList
 });
