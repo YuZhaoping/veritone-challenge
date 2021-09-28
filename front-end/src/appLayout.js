@@ -23,6 +23,7 @@ const AppRoot = styled('div')({
 });
 
 const Container = styled(MuiContainer)({
+  flexGrow: 1,
   position: 'relative',
 });
 
