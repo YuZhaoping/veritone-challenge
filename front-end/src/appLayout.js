@@ -12,6 +12,7 @@ import Header from './components/Header';
 import TopNavbar from './components/TopNavbar';
 
 import {
+  HomePage,
   ShoppingListPage
 } from './pages';
 
@@ -32,8 +33,9 @@ const AppLayout = () => (
       <TopNavbar />
       <Container>
         <Switch>
+          <Route exact path='/'><HomePage /></Route>
           <Route path='/shopping-list'><ShoppingListPage /></Route>
-          <Redirect to='/shopping-list' />
+          <Redirect to='/' />
         </Switch>
       </Container>
     </AppRoot>
