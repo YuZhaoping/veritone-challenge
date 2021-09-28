@@ -2,7 +2,19 @@ import React, { Suspense } from 'react';
 
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './Home'));
+const isMockLoadSlow = (__MOCK_LOAD_SLOW__) ? true : false;
+
+const mockLoadSlow = (Comp, delay = 3000) => {
+  if (isMockLoadSlow) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(Comp), delay);
+    });
+  } else {
+    return Comp;
+  }
+};
+
+const Home = React.lazy(() => mockLoadSlow(import(/* webpackChunkName: "home" */ './Home')));
 const ShoppingList = React.lazy(() => import(/* webpackChunkName: "shopping-list" */ './ShoppingList'));
 
 export const HomePage = (props) => (

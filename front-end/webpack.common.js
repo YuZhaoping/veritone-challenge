@@ -96,6 +96,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __MOCK_API_ACCESS__: JSON.stringify(process.env.MOCK_API_ACCESS),
+      __MOCK_LOAD_SLOW__: JSON.stringify(process.env.MOCK_LOAD_SLOW),
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
