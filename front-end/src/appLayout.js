@@ -33,8 +33,12 @@ const AppLayout = () => (
       <TopNavbar />
       <Container>
         <Switch>
-          <Route exact path='/'><HomePage /></Route>
-          <Route path='/shopping-list'><ShoppingListPage /></Route>
+          <Route exact path='/'
+            children={(props) => (<HomePage {...props}/>)}
+          />
+          <Route path='/shopping-list'
+            children={(props) => (<ShoppingListPage {...props}/>)}
+          />
           <Redirect to='/' />
         </Switch>
       </Container>
