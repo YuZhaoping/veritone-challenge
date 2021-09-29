@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import clsx from 'clsx';
 import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const linkStyles = (theme) => ({
   root: {
@@ -24,7 +25,6 @@ const linkStyles = (theme) => ({
 const StyledLink = withStyles(linkStyles)(({ classes, className, active, ...other }) => (
   <Link
     component={RouterLink}
-    active={active}
     className={clsx(
       classes.root,
       {
@@ -51,21 +51,56 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const navLinks = [
-  { id: 'home', path: '/', label: 'Home'},
-  { id: 'shopping-list', path: '/shopping-list', label: 'Shopping list'},
+  { path: '/', label: 'Home' },
+  { path: '/shopping-list', label: 'Shopping list' },
 ];
 
-const TopNavbar = () => {
+const TopNavbar = (props) => {
+  const { pathname } = props;
+
+  const [pathState, setPathState] = useState({
+    current: pathname,
+  });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== pathState.current) {
+      setPathState({ current: location.pathname });
+    }
+  }, [location]);
+
+  const onClick = (event) => {
+    const url = new URL(event.target.href);
+
+    if (url.pathname !== pathState.current) {
+      setPathState({ current: url.pathname });
+    } else {
+      event.preventDefault();
+    }
+  };
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      {navLinks.map((el) => (
-        <StyledLink key={el.id} to={el.path}>{el.label}</StyledLink>
+      {navLinks.map((link) => (
+        <StyledLink
+          to={link.path}
+          active={link.path === pathState.current}
+          onClick={onClick}
+          key={link.path}
+        >
+          {link.label}
+        </StyledLink>
       ))}
     </div>
   );
 };
 
-export default TopNavbar;
+const mapStateToProps = ({ router }) => ({
+  pathname: router.location.pathname,
+});
+
+export default connect(mapStateToProps, {
+})(TopNavbar);
