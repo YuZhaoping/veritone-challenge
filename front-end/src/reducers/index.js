@@ -5,9 +5,9 @@ import {
   errorsList
 } from './errorsReducer';
 
-const reducers = () => combineReducers({
+const createRootReducer = () => combineReducers({
   errorsProfile,
   errorsList
 });
 
-export default reducers;
+export default createRootReducer;
