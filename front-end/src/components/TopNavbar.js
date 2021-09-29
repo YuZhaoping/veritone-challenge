@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import clsx from 'clsx';
 import Link from '@material-ui/core/Link';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const linkStyles = (theme) => ({
   root: {
@@ -55,26 +54,28 @@ const navLinks = [
   { path: '/shopping-list', label: 'Shopping list' },
 ];
 
-const TopNavbar = (props) => {
-  const { pathname } = props;
+const TopNavbar = () => {
 
   const [pathState, setPathState] = useState({
-    current: pathname,
+    current: '/',
   });
 
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname !== pathState.current) {
-      setPathState({ current: location.pathname });
+    const pathname = location.pathname;
+
+    if (pathname !== pathState.current) {
+      setPathState({ current: pathname });
     }
   }, [location]);
 
   const onClick = (event) => {
     const url = new URL(event.target.href);
+    const pathname = url.pathname;
 
-    if (url.pathname !== pathState.current) {
-      setPathState({ current: url.pathname });
+    if (pathname !== pathState.current) {
+      setPathState({ current: pathname });
     } else {
       event.preventDefault();
     }
@@ -90,17 +91,10 @@ const TopNavbar = (props) => {
           active={link.path === pathState.current}
           onClick={onClick}
           key={link.path}
-        >
-          {link.label}
-        </StyledLink>
+        >{link.label}</StyledLink>
       ))}
     </div>
   );
 };
 
-const mapStateToProps = ({ router }) => ({
-  pathname: router.location.pathname,
-});
-
-export default connect(mapStateToProps, {
-})(TopNavbar);
+export default TopNavbar;
