@@ -16,6 +16,7 @@ const mockLoadSlow = (Comp, delay = 3000) => {
 
 const Home = React.lazy(() => mockLoadSlow(import(/* webpackChunkName: "home" */ './Home')));
 const ShoppingList = React.lazy(() => import(/* webpackChunkName: "shopping-list" */ './ShoppingList'));
+const ToDo = React.lazy(() => import(/* webpackChunkName: "todo" */ './ToDo'));
 
 export const HomePage = (props) => (
   <Suspense fallback={<LoadingSpinner />}>
@@ -26,5 +27,11 @@ export const HomePage = (props) => (
 export const ShoppingListPage = (props) => (
   <Suspense fallback={<LoadingSpinner />}>
     <ShoppingList {...props}/>
+  </Suspense>
+);
+
+export const ToDoPage = (props) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <ToDo {...props}/>
   </Suspense>
 );

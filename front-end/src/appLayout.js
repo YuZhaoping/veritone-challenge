@@ -13,7 +13,8 @@ import TopNavbar from './components/TopNavbar';
 
 import {
   HomePage,
-  ShoppingListPage
+  ShoppingListPage,
+  ToDoPage
 } from './pages';
 
 const AppRoot = styled('div')({
@@ -39,6 +40,9 @@ const AppLayout = () => (
           />
           <Route path='/shopping-list'
             children={(props) => (<ShoppingListPage {...props}/>)}
+          />
+          <Route path='/todo'
+            children={(props) => (<ToDoPage {...props}/>)}
           />
           <Redirect to='/' />
         </Switch>

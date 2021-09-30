@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
 const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/shopping-list', label: 'Shopping list' },
+  { path: '/todo', label: 'ToDo' },
 ];
 
 const TopNavbar = () => {
