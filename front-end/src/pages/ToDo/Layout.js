@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 0,
     marginRight: 'auto',
     marginLeft: 'auto',
-    padding: theme.spacing(3),
+    padding: 0,
   },
 }));
 
