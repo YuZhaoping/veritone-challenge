@@ -1,5 +1,6 @@
 import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import ToDo from './ToDo';
 
@@ -21,9 +22,13 @@ const Layout = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ToDo />
-    </div>
+    <AutoSizer disableWidth>
+    {({height}) => (
+      <div style={{height: height}} className={classes.root}>
+        <ToDo />
+      </div>
+    )}
+    </AutoSizer>
   );
 };
 
