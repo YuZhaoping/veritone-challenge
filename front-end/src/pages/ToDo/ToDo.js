@@ -22,6 +22,13 @@ const styles = (theme) => ({
   },
   headerCell: {
   },
+  bodyCell: {
+  },
+  cellOdd: {
+    backgroundColor: theme.palette.action.hover,
+  },
+  cellEven: {
+  },
 });
 
 class MuiVirtualizedTable extends React.PureComponent {
@@ -30,12 +37,15 @@ class MuiVirtualizedTable extends React.PureComponent {
     rowHeight: 48,
   };
 
-  cellRenderer = ({ cellData, columnIndex, style }) => {
+  cellRenderer = ({ cellData, columnIndex, rowIndex, style }) => {
     const { classes, columns } = this.props;
+
+    const className = (rowIndex % 2 === 0) ? classes.cellEven : classes.cellOdd;
 
     return (
       <TableCell
         component="div"
+        className={clsx(classes.bodyCell, className)}
         variant="body"
         style={style}
         align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
@@ -106,6 +116,7 @@ class MuiVirtualizedTable extends React.PureComponent {
             this.cellRenderer({
               cellData: cellGetter(rowGetter(rowIndex), columnIndex),
               columnIndex,
+              rowIndex,
               style,
             })
           )}
