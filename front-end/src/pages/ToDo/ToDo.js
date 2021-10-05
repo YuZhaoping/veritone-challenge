@@ -2,7 +2,9 @@ import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import itemsData from './itemsData';
-import DemoGrid from './DemoGrid';
+//import DemoGrid from './DemoGrid';
+import DemoTable from './DemoTable';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +20,7 @@ const ToDo = () => {
 
   return (
     <div className={classes.root}>
-      <DemoGrid
+      <DemoTable
         tableHeight={400}
         tableWidth={712}
         rowCount={itemsData.getRowCount()}
