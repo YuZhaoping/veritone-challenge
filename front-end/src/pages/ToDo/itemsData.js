@@ -29,6 +29,14 @@ for (let i = 0; i < 200; i += 1) {
   rows.push(createData(i, ...randomSelection));
 }
 
+function getRowCount() {
+  return rows.length;
+}
+
+function getRowData(rowIndex) {
+  return rows[rowIndex];
+}
+
 const columns = [
   {
     width: 200,
@@ -63,7 +71,8 @@ const columns = [
 
 const itemsData = {
   columns,
-  rows,
+  getRowCount,
+  getRowData,
   getCellData,
 };
 

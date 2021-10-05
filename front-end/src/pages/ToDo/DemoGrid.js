@@ -34,36 +34,36 @@ class MuiDemoGrid extends React.PureComponent {
     rowHeight: 48,
   };
 
-  cellRenderer = ({ cellData, columnIndex, rowIndex, style }) => {
-    const { classes, columns } = this.props;
+  cellRenderer = ({ columnIndex, rowIndex, style }) => {
+    const { classes, columns, rowGetter, cellGetter } = this.props;
 
     const className = (rowIndex % 2 === 0) ? classes.cellEven : classes.cellOdd;
 
     return (
       <TableCell
-        component="div"
+        component='div'
         className={clsx(classes.bodyCell, className)}
-        variant="body"
+        variant='body'
         style={style}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
-        {cellData}
+        {cellGetter(rowGetter(rowIndex), columnIndex)}
       </TableCell>
     );
   };
 
-  headerRenderer = ({ label, columnIndex, style }) => {
+  headerRenderer = ({ columnIndex, style }) => {
     const { classes, columns } = this.props;
 
     return (
       <TableCell
-        component="div"
+        component='div'
         className={clsx(classes.headerCell, classes.flexContainer)}
-        variant="head"
+        variant='head'
         style={style}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
-        <span>{label}</span>
+        <span>{columns[columnIndex].label}</span>
       </TableCell>
     );
   };
@@ -75,14 +75,12 @@ class MuiDemoGrid extends React.PureComponent {
       tableHeight, tableWidth,
       headerHeight,
       rowHeight,
-      rowCount, rowGetter,
-      cellGetter,
-      ...other
+      rowCount,
     } = this.props;
 
     return (
       <Paper className={classes.root}>
-      <TableHead component="div">
+      <TableHead component='div'>
         <Grid
           height={headerHeight}
           width={tableWidth}
@@ -91,16 +89,10 @@ class MuiDemoGrid extends React.PureComponent {
           rowCount={1}
           rowHeight={() => headerHeight}
         >
-          {({ columnIndex, rowIndex, style }) => (
-            this.headerRenderer({
-              label: columns[columnIndex].label,
-              columnIndex,
-              style,
-            })
-          )}
+          {this.headerRenderer}
         </Grid>
       </TableHead>
-      <TableBody component="div">
+      <TableBody component='div'>
         <Grid
           height={tableHeight}
           width={tableWidth}
@@ -109,14 +101,7 @@ class MuiDemoGrid extends React.PureComponent {
           rowCount={rowCount}
           rowHeight={() => rowHeight}
         >
-          {({ columnIndex, rowIndex, style }) => (
-            this.cellRenderer({
-              cellData: cellGetter(rowGetter(rowIndex), columnIndex),
-              columnIndex,
-              rowIndex,
-              style,
-            })
-          )}
+          {this.cellRenderer}
         </Grid>
       </TableBody>
       </Paper>
