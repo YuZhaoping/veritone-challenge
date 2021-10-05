@@ -3,7 +3,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import itemsData from './itemsData';
 //import DemoGrid from './DemoGrid';
-import DemoTable from './DemoTable';
+//import DemoTable from './DemoTable';
+import DemoTable from './DemoInfiniteLoader';
 
 
 const useStyles = makeStyles(theme => ({
