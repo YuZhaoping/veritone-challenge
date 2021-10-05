@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { VariableSizeGrid as Grid } from 'react-window';
 
@@ -17,7 +18,10 @@ const styles = (theme) => ({
     alignItems: 'center',
     boxSizing: 'border-box',
   },
+  headerRow: {
+  },
   headerCell: {
+    padding: 12,
   },
   bodyCell: {
   },
@@ -52,19 +56,42 @@ class MuiDemoGrid extends React.PureComponent {
     );
   };
 
-  headerRenderer = ({ columnIndex, style }) => {
+  headerCellRenderer = ({ columnIndex, key }) => {
     const { classes, columns } = this.props;
 
     return (
       <TableCell
         component='div'
-        className={clsx(classes.headerCell, classes.flexContainer)}
+        className={classes.headerCell}
         variant='head'
-        style={style}
+        style={{ width: columns[columnIndex].width }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
+        key={key}
       >
         <span>{columns[columnIndex].label}</span>
       </TableCell>
+    );
+  };
+
+  headerRenderer = ({ rowWidth, headerHeight }) => {
+    const { classes, columns } = this.props;
+
+    return (
+      <TableRow
+        component='div'
+        className={clsx(classes.headerRow, classes.flexContainer)}
+        style={{
+          width: rowWidth,
+          height: headerHeight,
+        }}
+      >
+        {columns.map((col, columnIndex) => (
+          this.headerCellRenderer({
+            columnIndex,
+            key: col.dataKey,
+          })
+        ))}
+      </TableRow>
     );
   };
 
@@ -78,19 +105,15 @@ class MuiDemoGrid extends React.PureComponent {
       rowCount,
     } = this.props;
 
+    const rowWidth = columns.reduce((total, col) => (total + col.width), 0);
+
     return (
       <Paper className={classes.root}>
       <TableHead component='div'>
-        <Grid
-          height={headerHeight}
-          width={tableWidth}
-          columnCount={columns.length}
-          columnWidth={index => columns[index].width}
-          rowCount={1}
-          rowHeight={() => headerHeight}
-        >
-          {this.headerRenderer}
-        </Grid>
+        {this.headerRenderer({
+          rowWidth,
+          headerHeight,
+        })}
       </TableHead>
       <TableBody component='div'>
         <Grid
